@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
-import Reducer from "./_reducers";
+import rootReducer from "./_reducers";
+import { RouterProvider } from "react-router-dom";
+import router from "./Router";
+import Root from "./Root";
 
 const createStoreWithMiddleware = applyMiddleware(
   promiseMiddleware,
@@ -18,12 +20,14 @@ root.render(
   <React.StrictMode>
     <Provider
       store={createStoreWithMiddleware(
-        Reducer,
+        rootReducer,
         window.__REDUX_DEVTOOLS_EXTENSTION__ &&
           window.__REDUX_DEVTOOLS_EXTENSTION__()
       )}
     >
-      <App />
+      <RouterProvider router={router}>
+        <Root />
+      </RouterProvider>
     </Provider>
   </React.StrictMode>
 );
