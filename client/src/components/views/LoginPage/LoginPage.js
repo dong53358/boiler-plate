@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import loginUser from "../../../_actions/user_action";
 import { useNavigate } from "react-router-dom";
+import Auth from "../hoc/Auth";
 
 const Main = styled.div`
   display: flex;
@@ -47,9 +48,9 @@ function LoginPage() {
     setPasswordDate("");
   };
   const handleChange = (event) => {
-    if (event.target.type == "email") {
+    if (event.target.type === "email") {
       setEmailDate(event.target.value);
-    } else if (event.target.type == "password") {
+    } else if (event.target.type === "password") {
       setPasswordDate(event.target.value);
     }
   };
@@ -67,4 +68,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default Auth(LoginPage, false);

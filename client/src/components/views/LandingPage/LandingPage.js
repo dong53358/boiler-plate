@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import Auth from "../hoc/Auth";
 
 const Main = styled.div`
   display: flex;
@@ -38,4 +39,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+export default Auth(LandingPage, null);
